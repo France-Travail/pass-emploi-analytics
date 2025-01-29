@@ -120,6 +120,7 @@ def write_dfs_conseiller(path):
     df_brsa = get_df_brsa(path)
     full_df = pd.concat([df_ft, df_milo, df_aij, df_brsa])
     full_df['nb_conseillers'] = full_df['nb_conseillers'].apply(int)
+    full_df = full_df.sort_values(['mois', 'structure', 'code_departement'])
     # DF par départements
     full_df.to_csv("conseillers_par_departement.csv")
     # DF national
@@ -134,6 +135,7 @@ def write_dfs_conseiller(path):
             }, 
             axis=1)
     ]).drop_duplicates()
+    df_national = df_national.sort_values(['Mois', 'Structure'])
     df_national.to_csv('evolution_conseillers_structure_national.csv', index=False)
 
 
@@ -153,4 +155,5 @@ def write_df_beneficiaire(path):
     )
     df_pivoted['mois'] = df_pivoted['mois'] + '-01'
     df_pivoted['nb_jeunes_cej'] = df_pivoted['nb_jeunes_cej'].replace({'-': 0})
+    df_pivoted = df_pivoted.sort_values(['mois', 'structure', 'Code_Département'])
     df_pivoted.to_csv("stock jeunes par departement.csv", index=None)
