@@ -169,3 +169,18 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+make.bat
+source/
+sphinx_output/
+.DS_Store
+pass-emploi-analytics-venv/
+.idea/
+.vscode/
+__pycache__
+dist/
+build/
+egg-info
+.environment
+.pytest_cache
+*.egg-info/
