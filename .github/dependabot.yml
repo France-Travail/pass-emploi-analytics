@@ -1,0 +1,26 @@
+version: 2
+
+updates:
+  # ===========================================
+  # Pip
+  # ===========================================
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: daily
+      time: '07:00'
+      timezone: Europe/Paris
+    commit-message:
+      prefix: 'chore(deps):'
+    allow:
+      - update-types:
+          - version-update:semver-patch
+          - version-update:semver-minor
+    groups:
+      # Python dependencies - patch and minor
+      pip-minor-patch:
+        applies-to: version-updates
+        update-types:
+          - patch
+          - minor
+      # Majors : pas de groupe, chaque dépendance a sa propre PR
